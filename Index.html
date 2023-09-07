@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To-Do List</title>
+        <style>
+            body {
+                background: black;
+                font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .image{
+            width:100%;
+            height: 100%;
+            position: absolute;
+            z-index: -1 ;
+        }
+
+        #app {
+            height:800px;
+            background: linear-gradient(90deg, #007BFF, #FFA500, #4CAF50);
+            background-size: 200% 200%;
+            animation: gradientAnimation 5s linear infinite;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 10px 100px;
+            padding-top: 300px;
+            width: 300px;
+        }
+        @keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+        h1 {
+            color: #333;
+            padding:32px 100px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 8px;
+            margin: 4px 0;
+            background-color: #fff;
+        }
+
+        li:hover {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 10px 40px;
+            margin: 50px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff4c32;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 9px 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #task {
+            margin-bottom: 10px;
+        }
+
+        button#add-button {
+            background-color: #4CAF50;
+        }
+
+        button#add-button:hover {
+            background-color: #45a049;
+        }
+
+        .checkbox {
+            margin-right: 10px;
+        }
+        .hi{
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            width: 300px;
+        }
+        .con{
+            height:600px;
+            width: 700px;
+            position: absolute;
+            border: 2px solid transparent;
+    animation: moveBorder 2s linear infinite;
+}
+.con1{
+    height:700px;
+            width: 840px;
+            position: absolute;
+            border: 2px solid transparent;
+    animation: moveBorder 2s linear infinite;
+        }
+        .con2{
+            height:805px;
+            width: 927px;
+            position: absolute;
+            border: 2px solid transparent;
+    animation: moveBorder 2s linear infinite;
+        }
+        
+        /* .ho{
+            height:500px;
+            width:1007px;
+            position: absolute;
+            border:2px solid rgb(246, 122, 6);
+        }
+        .ho1{
+            height:600px;
+            width:1107px;
+            position: absolute;
+            border:2px solid rgb(246, 122, 6);
+        }
+        .ho2{
+            height:700px;
+            width:1307px;
+            position: absolute;
+            border:2px solid rgb(246, 122, 6);
+        } */
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>To-Do List</h1>
+        <input type="text" id="task" placeholder="New task">
+        <button id="add-button" onclick="addTask()">Add</button>
+        <ul id="taskList"></ul>
+    </div>
+    <div class="con"></div>
+    <div class="con1"></div>
+    <div class="con2"></div>
+    <div class="ho"></div>
+    <div class="ho1"></div>
+    <div class="ho2"></div>
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById("task");
+            const taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                const taskList = document.getElementById("taskList");
+                const listItem = document.createElement("li");
+
+                listItem.innerHTML = `
+                    <input type="checkbox" class="checkbox">
+                    <span>${taskText}</span>
+                    <button onclick="removeTask(this)">Remove</button>
+                `;
+
+                taskList.appendChild(listItem);
+                taskInput.value = "";
+            }
+        }
+
+        function removeTask(button) {
+            const taskList = document.getElementById("taskList");
+            const listItem = button.parentNode;
+            taskList.removeChild(listItem);
+        }
+    </script>
+</body>
+</html>
